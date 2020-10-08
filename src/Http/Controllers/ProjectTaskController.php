@@ -5,7 +5,7 @@ namespace duncanrmorris\projectsmodule\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-use App\project_task;
+use duncanrmorris\projectsmodule\App\project_task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +49,7 @@ class ProjectTaskController extends Controller
         ]);
 
         project_task::create([
-            'user_id' => AUTH::user()->user_id,
+            'user_id' => AUTH::user()->id,
             'project_id' => $cid,
              'client_id' => $id,
              'start_date' => $request['task_start_date'],
@@ -60,7 +60,9 @@ class ProjectTaskController extends Controller
              'status' => "Backlog",
          ]); 
 
-        return redirect("projects/edit/$cid")->withstatus('Project Task Successfully Created');
+         return redirect("projects/edit/$cid")->withstatus('Project Task Successfully Created');
+
+        
     }
 
     /**

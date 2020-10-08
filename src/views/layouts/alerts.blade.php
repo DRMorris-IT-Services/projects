@@ -4,10 +4,8 @@
 <!-- SYSTEM NOTIFICATIONS -->
 @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <i class="nc-icon nc-simple-remove"></i>
-                                                    </button>
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="nc-icon nc-simple-remove"></i></button>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -18,7 +16,7 @@
         @endif
 
         @if (session('status'))
-            <div  class="alert alert-success alert-dismissible fade show fixed-top" role="alert" >
+            <div  class="alert alert-success alert-dismissible fade show" role="alert" >
             <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
             aria-label="Close">
             <i class="nc-icon nc-simple-remove"></i>
@@ -29,7 +27,7 @@
         @endif
 
         @if (session('warning'))
-            <div  class="alert alert-warning alert-dismissible fade show fixed-top" role="alert" >
+            <div  class="alert alert-warning alert-dismissible fade show" role="alert" >
             <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
             aria-label="Close">
             <i class="nc-icon nc-simple-remove"></i>
@@ -40,7 +38,7 @@
         @endif
 
         @if (session('download'))
-            <div  class="alert alert-info alert-dismissible fade show fixed-top" role="alert" >
+            <div  class="alert alert-info alert-dismissible fade show" role="alert" >
             <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
             aria-label="Close">
             <i class="nc-icon nc-simple-remove"></i>
@@ -51,7 +49,7 @@
         @endif
 
         @if (session('delete'))
-            <div class="alert alert-danger alert-dismissible fade show fixed-top" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
             aria-label="Close">
             <i class="nc-icon nc-simple-remove"></i>
