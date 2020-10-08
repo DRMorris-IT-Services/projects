@@ -22,7 +22,7 @@ class ProjectsController extends Controller
     {
         //
 
-        return view('projects.projects',['projects' => $projects->orderby('project_ref', 'DESC')->get(), 'clients' => $clients->orderby('company','ASC')->get()]);
+        return view('projectsmodule::projects',['projects' => $projects->orderby('project_ref', 'DESC')->get(), 'clients' => $clients->orderby('company','ASC')->get()]);
     }
 
     /**
@@ -34,7 +34,7 @@ class ProjectsController extends Controller
     {
         //
         
-        return view('projects.new',['clients' => $clients->get()]);
+        return view('projectsmodule::new',['clients' => $clients->get()]);
     }
 
     /**
@@ -91,7 +91,7 @@ class ProjectsController extends Controller
         //
         $client = clients::join('projects','clients.client_id', '=', 'projects.client_id')
         ->select('clients.company','clients.client_id')->where('project_id',$id)->get();
-        return view('projects.view', ['project' => $projects->where('project_id', $id)->get(), 'client' => $client, 'clients' => $clients->get(),
+        return view('projectsmodule::view', ['project' => $projects->where('project_id', $id)->get(), 'client' => $client, 'clients' => $clients->get(),
         'tasks' => $tasks->where('project_id', $id)->count(),'project_tasks' => $tasks->where('project_id', $id)->get()]);
     }
 
@@ -107,7 +107,7 @@ class ProjectsController extends Controller
         $client = clients::join('projects','clients.client_id', '=', 'projects.client_id')
         ->select('clients.company','clients.client_id')->where('project_id',$id)->get();
 
-        return view('projects.edit',['project' => $projects->where('project_id', $id)->get(), 'clients' => $clients->get(), 'client' => $client,
+        return view('projectsmodule::edit',['project' => $projects->where('project_id', $id)->get(), 'clients' => $clients->get(), 'client' => $client,
         'tasks' => $tasks->where('project_id', $id)->count(), 'project_tasks' => $tasks->where('project_id', $id)->get()]);
     }
 
