@@ -11,5 +11,5 @@ The Projects Package is designed to be used with other packages offered by DRMor
 
 ![Projects Package Overview](projects_module_overview.png)
 
-![Projects Package](projects_module_detail.png)
+![Projects Package](projects_module_detaila.png)
 
