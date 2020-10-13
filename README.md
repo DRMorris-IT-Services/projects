@@ -7,7 +7,7 @@
 
 The Laravel Projects Package for Laravel ^7.2 delivers a complete projects management tool within your Laravel application.
 
-The Projects Package is designed to be used with other packages offered by DRMorris IT Services.  To find out more about the packages offered by DRMorris IT Services check out www.drmorris-itservices.de
+The Projects Package is designed to be used with other packages offered by DRMorris IT Services.  To find out more about the packages offered by DRMorris IT Services check out https://github.com/DRMorris-IT-Services
 
 ![Projects Package Overview](projects_module_overview.png)
 
