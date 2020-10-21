@@ -5,14 +5,32 @@
 <div class="container">
     @include('projectsmodule::layouts.alerts')
  
+    @if($count == 0)
+<div class="row justify-content-end">
+<a href="{{route('projects.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
+</div>
+
+<h2>Setup Required</h2>
+  <p>Please use the 'Clog' icon to setup the users.</p>
+@endif
+@if($count >= 1)
+@foreach($controls as $c)
+
+@if($c->project_admin == "on")
+<div class="row justify-content-end">
+  <a href="{{route('projects.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
+  </div>
+@endif
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">List</a>
   </li>
-  
+  @if($c->project_add == "on")
   <li class="nav-item">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New Project</a>
   </li>
+  @endif
   
   
 </ul>
@@ -26,6 +44,7 @@
                     <div class="tab-content col-md-12 " id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                   
+                        @if($c->project_view == "on")
                                                   <table class="table">
                                                       <thead class="text-primary">
                                                           <tr>
@@ -42,15 +61,16 @@
                                                       @foreach($projects as $p)
                                                           <tr>
                                                               <td><a href="{{route('projects.view',[$p->project_id])}}" >DR-{{$p->project_ref}}</a></td>
-                                                              <td>@foreach($clients as $c) @if($p->client_id == $c->client_id) {{$c->company}} @endif @endforeach</td>
+                                                              <td>@foreach($clients as $cl) @if($p->client_id == $cl->client_id) {{$cl->company}} @endif @endforeach</td>
                                                               <td>{{ date('d/m/y', strtotime($p->start_date))}}</td>
                                                               <td>{{ date('d/m/y', strtotime($p->due_date))}}</td>
                                                               <td>{{$p->project_summary}}</td>
                                                               <td>{{ $p->status}}</td>
                                                               <td>
-                                                              
+                                                              @if($c->project_edit == "on")
                                                               <a href="{{route('projects.edit',[$p->project_id])}}" ><button class="btn btn-sm fa fa-edit btn-outline-warning"></button></a>
-                                                              
+                                                              @endif
+                                                              @if($c->project_del == "on")
                                                               <button class="btn btn-sm btn-outline-danger fa fa-trash" data-toggle="modal" data-target="#invoice_del{{$p->id}}"></button>
                       
                                                               <!-- MODAL DELETE PROJECT -->
@@ -81,7 +101,7 @@
                                                                       </form>
                       
                                                                       <!-- END MODAL FOR DELETE CLIENT --> 
-                                                                      
+                                                                      @endif
                                                               </td>
                                                           </tr>
                                                       @endforeach
@@ -89,8 +109,10 @@
                                                       </tbody>
                       
                                                   </table>
-                                              
-                                          
+                                                  @else
+                                                <p>Sorry, you don't have the access level required to view.</p>
+                                                @endif  
+                                       
                                   
                           <!-- END OF TAB -->
                           </div>
@@ -259,6 +281,7 @@
     </div>
 </div>
 
-
+@endforeach
+@endif
 
 @endsection

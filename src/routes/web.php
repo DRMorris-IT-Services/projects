@@ -18,6 +18,12 @@ Route::group(['namespace' => 'duncanrmorris\projectsmodule\Http\Controllers'], f
         Route::put('projects/tasks/del/{id}/{cid}', 'ProjectTaskController@destroy')->name('projects.deltask');
 
    
+        ### CONTROLS ###
+        Route::get('projects/controls/{id}', 'ProjectscontrolsController@index')->name('projects.controls');
+        Route::get('projects/controls/view/{id}', 'ProjectscontrolsController@show')->name('projects.controls.view');
+        Route::get('projects/controls/setup/{id}', 'ProjectscontrolsController@create')->name('projects.controls.setup');
+        Route::get('projects/controls/edit/{id}', 'ProjectscontrolsController@edit')->name('projects.controls.edit');
+        Route::put('projects/controls/update/{id}', 'ProjectscontrolsController@update')->name('projects.controls.update');
 
     });
 });

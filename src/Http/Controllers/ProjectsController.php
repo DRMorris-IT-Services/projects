@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\View;
 use duncanrmorris\projectsmodule\App\projects;
 use duncanrmorris\projectsmodule\App\clients;
 use duncanrmorris\projectsmodule\App\project_task;
+use duncanrmorris\projectsmodule\App\projectcontrols;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
@@ -18,11 +20,16 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(projects $projects, clients $clients)
+    public function index(projects $projects, clients $clients, projectcontrols $projectcontrols)
     {
         //
 
-        return view('projectsmodule::projects',['projects' => $projects->orderby('project_ref', 'DESC')->get(), 'clients' => $clients->orderby('company','ASC')->get()]);
+        return view('projectsmodule::projects',[
+            'projects' => $projects->orderby('project_ref', 'DESC')->get(), 
+            'clients' => $clients->orderby('company','ASC')->get(),
+            'controls' => $projectcontrols->where('user_id',Auth::user()->id)->get(),
+            'count' => $projectcontrols->count(),
+            ]);
     }
 
     /**
