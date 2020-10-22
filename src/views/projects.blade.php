@@ -31,9 +31,14 @@
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New Project</a>
   </li>
   @endif
+
+  <li class="nav-item">
+    <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab" aria-controls="archive" aria-selected="true">Archive ({{$archive_count}})</a>
+  </li>  
   
   
 </ul>
+
 
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -45,6 +50,7 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                   
                         @if($c->project_view == "on")
+                            
                                                   <table class="table">
                                                       <thead class="text-primary">
                                                           <tr>
@@ -59,6 +65,7 @@
                                                       </thead>
                                                       <tbody>
                                                       @foreach($projects as $p)
+                                                        @if($p->status != "Completed")
                                                           <tr>
                                                               <td><a href="{{route('projects.view',[$p->project_id])}}" >DR-{{$p->project_ref}}</a></td>
                                                               <td>@foreach($clients as $cl) @if($p->client_id == $cl->client_id) {{$cl->company}} @endif @endforeach</td>
@@ -104,6 +111,7 @@
                                                                       @endif
                                                               </td>
                                                           </tr>
+                                                          @endif
                                                       @endforeach
                                                       
                                                       </tbody>
@@ -118,7 +126,7 @@
                           </div>
                       
                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      
+                          
                       
                           <div class="col-md-12">
                                       
@@ -156,8 +164,8 @@
                                       <p class="card-text">Please select the client:</p>
                                       <div class="form-group">
                                       <select name="client" class="form-control " required><option>{{ old('client') }}</option>
-                                      @foreach ($clients as $c)
-                                      <option value="{{$c->client_id}}">{{ $c->company }}</option>
+                                      @foreach ($clients as $cl)
+                                      <option value="{{$c->client_id}}">{{ $cl->company }}</option>
                                       @endforeach
                                       </select>
                                       @if ($errors->has('client'))
@@ -271,7 +279,81 @@
                       </form>
                                       
                               </div>
+                              </div>
+
+                          <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
+                          
+                          <table class="table">
+                                                      <thead class="text-primary">
+                                                          <tr>
+                                                              <th>Ref No.</th>
+                                                              <th>Client</th>
+                                                              <th>Start Date</th>
+                                                              <th>Due Date</th>
+                                                              <th>Project Summary</th>
+                                                              <th>Status</th>
+                                                              <th>Actions</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                      @foreach($projects as $p)
+                                                        @if($p->status == "Completed")
+                                                          <tr>
+                                                              <td><a href="{{route('projects.view',[$p->project_id])}}" >DR-{{$p->project_ref}}</a></td>
+                                                              <td>@foreach($clients as $cl) @if($p->client_id == $cl->client_id) {{$cl->company}} @endif @endforeach</td>
+                                                              <td>{{ date('d/m/y', strtotime($p->start_date))}}</td>
+                                                              <td>{{ date('d/m/y', strtotime($p->due_date))}}</td>
+                                                              <td>{{$p->project_summary}}</td>
+                                                              <td>{{ $p->status}}</td>
+                                                              <td>
+                                                              @if($c->project_edit == "on")
+                                                              <a href="{{route('projects.edit',[$p->project_id])}}" ><button class="btn btn-sm fa fa-edit btn-outline-warning"></button></a>
+                                                              @endif
+                                                              @if($c->project_del == "on")
+                                                              <button class="btn btn-sm btn-outline-danger fa fa-trash" data-toggle="modal" data-target="#invoice_del{{$p->id}}"></button>
+                      
+                                                              <!-- MODAL DELETE PROJECT -->
+                                                              <form class="col-md-12" action="{{ route('projects.del',[$p->project_id]) }}" method="POST" enctype="multipart/form-data">
+                                                                                      @csrf
+                                                                                      @method('PUT')
+                                                                      
+                                                                      <div class="modal fade" id="invoice_del{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                          <div class="modal-content">
+                                                                          <div class="modal-header bg-danger text-white">
+                                                                              <h5 class="modal-title" id="exampleModalLongTitle">REMOVE Project??</h5>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                          
+                                                                          <h3><i class="fa fa-warning" ></i> WARNING!!</h3>
+                                                                          <h5>You are going to remove this project and all the project tasks are you sure?</h5>
+                                                                          <h5>This action can <b><u>NOT BE UNDONE!</u></b></h5>
+                                                                              
+                                                                          </div>
+                                                                          <div class="modal-footer card-footer">
+                                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                              <button type="submit" class="btn btn-danger">DELETE</button>
+                                                                          </div>
+                                                                          </div>
+                                                                      </div>
+                                                                      </div>
+                                                                      </form>
+                      
+                                                                      <!-- END MODAL FOR DELETE CLIENT --> 
+                                                                      @endif
+                                                              </td>
+                                                          </tr>
+                                                          @endif
+                                                      @endforeach
+                                                      
+                                                      </tbody>
+                      
+                                                  </table>
+                                                  
+
                           </div>
+                        <!-- END OF TABS -->
+                          
                           
                       </div>
                     

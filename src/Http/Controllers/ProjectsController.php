@@ -29,6 +29,7 @@ class ProjectsController extends Controller
             'clients' => $clients->orderby('company','ASC')->get(),
             'controls' => $projectcontrols->where('user_id',Auth::user()->id)->get(),
             'count' => $projectcontrols->count(),
+            'archive_count' => $projects->where('status', 'Completed')->count(),
             ]);
     }
 
