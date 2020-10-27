@@ -1,7 +1,57 @@
 @extends('layouts.app')
-
-@section('content')
 @foreach ($project as $p)
+@section('header')
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function daysToMilliseconds(days) {
+      return days * 24 * 60 * 60 * 1000;
+    }
+
+    function drawChart() {
+
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+        @foreach($project_tasks as $pg)
+        [
+            '{{$pg->id}}',
+        '{{$pg->task_summary}}',
+        new Date('{{$pg->start_date}}'),
+        new Date('{{$pg->due_date}}'),
+        null,
+        {{$pg->task_percent_completed}},
+        null
+        ],
+        @endforeach
+        
+      ]);
+
+      var options = {
+        height: 350,
+        gantt: {
+          trackHeight: 30,
+          defaultStartDateMillis: new Date(2020, 11, 1)
+        }
+      };
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+@endsection
+@section('content')
+
 
 <div class="container">
     @include('projectsmodule::layouts.alerts')
@@ -23,6 +73,10 @@
       <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Documents</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt" aria-selected="false">Gantt Chart</a>
+      </li>
       
       <li class="nav-item">
         @if ($errors->has('task_start_date') or $errors->has('task_due_date'))<a class="nav-link bg-warning text-dark" id="newtask-tab" data-toggle="tab" href="#newtask" role="tab" aria-controls="newtask" aria-selected="false">New Task  
@@ -34,7 +88,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h3>Project Details</h3></div>
+                <div class="card-header"><h3>Project Details - DR-{{$p->project_ref}}</h3></div>
 
                 <div class="card-body">
 
@@ -428,6 +482,10 @@
                         </div>
             </div>
             
+            <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
+            <h2>Project Overview</h2>
+            <div id="chart_div"></div>
+            </div>
             
             <div class="tab-pane fade" id="newtask" role="tabpanel" aria-labelledby="newtask-tab">
             <div class="row">
@@ -478,18 +536,20 @@
                                       <textarea class="form-control col-md-12" name="task_details" ></textarea>
             
             
-            <br><br>
-            
-            <div class="modal-footer card-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-primary">Save changes</button>
-            </div>
+                                        <br><br>
+                                        
+                                        <div class="modal-footer card-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-outline-primary">Save changes</button>
+                                        </div>
             
                                     </form>
                                     
                                
                             </div>
                         </div>
+            
+
             </div>
                    
                     
