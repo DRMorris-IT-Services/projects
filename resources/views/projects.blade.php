@@ -9,16 +9,16 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">List</a>
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><b><i class="fa fa-list"></i> List</b></a>
   </li>
   
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New Project</a>
+    <a class="nav-link bg-success text-white" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><b><i class="fa fa-plus-square"></i> New Project</b></a>
   </li>
   
 
   <li class="nav-item">
-    <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab" aria-controls="archive" aria-selected="true">Archive ({{$archive_count}})</a>
+    <a class="nav-link" id="archive-tab" data-toggle="tab" href="#archive" role="tab" aria-controls="archive" aria-selected="true"><b><i class="fa fa-archive"></i> Archive ({{$archive_count}})</b></a>
   </li>  
   
   

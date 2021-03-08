@@ -4,29 +4,33 @@
 @foreach ($project as $p)
 
 <div class="container">
-    @include('projectsmodule::layouts.alerts')
+    
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link" id="home-tab"  href="{{route('projects')}}" role="tab" aria-controls="home" aria-selected="true">List</a>
+<li class="nav-item">
+            <a class="nav-link" id="home-tab"  href="{{route('projects')}}" role="tab" aria-controls="home" aria-selected="true"><b><i class="fa fa-list"></i> List</b></a>
+          </li>
+        <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> <b><i class="fa fa-info-circle"></i> Details</b></a>
       </li>
-    <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
-  </li>
-  <li class="nav-item">
-    @if ($errors->has('edit_task_start_date') or $errors->has('edit_task_due_date')) <a class="nav-link bg-warning text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tasks ({{$tasks}})
-        @else <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tasks ({{$tasks}}) @endif
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Documents</a>
-  </li>
-  
-  <li class="nav-item">
-    @if ($errors->has('task_start_date') or $errors->has('task_due_date'))<a class="nav-link bg-warning text-dark" id="newtask-tab" data-toggle="tab" href="#newtask" role="tab" aria-controls="newtask" aria-selected="false">New Task  
-        @else <a class="nav-link" id="newtask-tab" data-toggle="tab" href="#newtask" role="tab" aria-controls="newtask" aria-selected="false">New Task  @endif 
-    </a>
-  </li>
+      <li class="nav-item">
+        @if ($errors->has('edit_task_start_date') or $errors->has('edit_task_due_date')) <a class="nav-link bg-warning text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><b><i class="fa fa-tasks"></i>Tasks</b> ({{$tasks}})
+            @else <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><b><i class="fa fa-tasks"></i> Tasks </b> ({{$tasks}}) @endif
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><b><i class="fa fa-file"></i> Documents</b></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt" aria-selected="false"><b><i class="fa fa-dashboard"></i> Gantt Chart</b></a>
+      </li>
+      
+      <li class="nav-item">
+        @if ($errors->has('task_start_date') or $errors->has('task_due_date'))<a class="nav-link bg-warning text-dark" id="newtask-tab" data-toggle="tab" href="#newtask" role="tab" aria-controls="newtask" aria-selected="false"><b><i class="fa fa-plus-square"></i> New Task</b>
+            @else <a class="nav-link bg-success text-white" id="newtask-tab" data-toggle="tab" href="#newtask" role="tab" aria-controls="newtask" aria-selected="false"><b><i class="fa fa-plus-square"></i> New Task</b>  @endif 
+        </a>
+      </li>
   
 </ul>
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace duncanrmorris\projectsmodule\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-use duncanrmorris\projectsmodule\App\project_task;
+use App\project_task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,7 +115,7 @@ class ProjectTaskController extends Controller
              'status' => $request['status'],
          ]); 
 
-        return redirect("projects/edit/$cid")->withstatus('Project Task Successfully Updated');
+        return redirect("projects/view/$cid")->withstatus('Project Task Successfully Updated');
 
     }
 

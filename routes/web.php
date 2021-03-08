@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/releasenotes', 'HomeController@releasenotes')->name('releasenotes');
+Route::get('/help', 'HomeController@help')->name('help');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
