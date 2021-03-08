@@ -1,14 +1,14 @@
 <?php
 
-namespace duncanrmorris\projectsmodule\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-use duncanrmorris\projectsmodule\App\projects;
-use duncanrmorris\projectsmodule\App\clients;
-use duncanrmorris\projectsmodule\App\project_task;
-use duncanrmorris\projectsmodule\App\projectcontrols;
+use App\projects;
+use App\clients;
+use App\project_task;
+use App\projectcontrols;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ class ProjectsController extends Controller
     {
         //
 
-        return view('projectsmodule::projects',[
+        return view('projects',[
             'projects' => $projects->orderby('project_ref', 'DESC')->get(), 
             'clients' => $clients->orderby('company','ASC')->get(),
             'controls' => $projectcontrols->where('user_id',Auth::user()->id)->get(),
@@ -42,7 +42,7 @@ class ProjectsController extends Controller
     {
         //
         
-        return view('projectsmodule::new',['clients' => $clients->get()]);
+        return view('new',['clients' => $clients->get()]);
     }
 
     /**
@@ -99,7 +99,7 @@ class ProjectsController extends Controller
         //
         $client = clients::join('projects','clients.client_id', '=', 'projects.client_id')
         ->select('clients.company','clients.client_id')->where('project_id',$id)->get();
-        return view('projectsmodule::view', ['project' => $projects->where('project_id', $id)->get(), 'client' => $client, 'clients' => $clients->get(),
+        return view('view', ['project' => $projects->where('project_id', $id)->get(), 'client' => $client, 'clients' => $clients->get(),
         'tasks' => $tasks->where('project_id', $id)->count(),'project_tasks' => $tasks->where('project_id', $id)->get()]);
     }
 
@@ -115,7 +115,7 @@ class ProjectsController extends Controller
         $client = clients::join('projects','clients.client_id', '=', 'projects.client_id')
         ->select('clients.company','clients.client_id')->where('project_id',$id)->get();
 
-        return view('projectsmodule::edit',['project' => $projects->where('project_id', $id)->get(), 'clients' => $clients->get(), 'client' => $client,
+        return view('edit',['project' => $projects->where('project_id', $id)->get(), 'clients' => $clients->get(), 'client' => $client,
         'tasks' => $tasks->where('project_id', $id)->count(), 'project_tasks' => $tasks->where('project_id', $id)->get()]);
     }
 

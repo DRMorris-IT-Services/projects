@@ -13,7 +13,7 @@
  <meta name="csrf-token" content="{{ csrf_token() }}">
 
  <title>{{ config('app.name', 'Laravel') }}</title>
- <link rel=icon href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/svgs/solid/globe-europe.svg>
+ <link rel=icon href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/svgs/solid/tasks.svg>
 
  </head>
  <body class="c-app">
