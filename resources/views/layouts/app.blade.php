@@ -47,13 +47,7 @@
             <li class="c-sidebar-nav-title">Support</li>
 
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{url('/releasenotes')}}">
-                <i class="c-sidebar-nav-icon fa fa-info-circle fa-lg"></i>Release Notes
-                </a>
-            </li>
-
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{url('/help')}}">
+                <a class="c-sidebar-nav-link" href="{{url('https://guides.drmorris-itservices.de')}}" target="_blank">
                 <i class="c-sidebar-nav-icon fa fa-question-circle fa-lg"></i>User Guides
                 </a>
             </li>
@@ -100,7 +94,7 @@
           <a class="dropdown-item" href="https://clients.drmorris-itservices.de/home" target="_blank"><i class="fa fa-globe" ></i> &nbsp; Clients</a>
           <a class="dropdown-item" href="#" target="_blank"><i class="fa fa-shopping-bag" ></i> &nbsp; Products</a>
           <a class="dropdown-item" href="#" target="_blank"><i class="fa fa-laptop" ></i> &nbsp; Assest Management</a>
-          <a class="dropdown-item" href="#" target="_blank"><i class="fa fa-tasks"></i>&nbsp; Projects</a>
+          <a class="dropdown-item" href="https://projects.drmorris-itservices.de/home" target="_blank"><i class="fa fa-tasks"></i>&nbsp; Projects</a>
         </div>
       </div>
       </ul>
@@ -182,9 +176,7 @@
                 <div class="col-12">
                 &copy;2020 DRMorris IT Services - Powered by CoreUI
                 </div>
-                <div class="col-12">
-                <small>V2.0 - MAR2021</small>
-                </div>
+                
             </div>
           </footer>
     </div>

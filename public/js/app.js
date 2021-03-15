@@ -49957,8 +49957,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/projectsmodule/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/projectsmodule/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/duncanmorris/Gnosis Project/projects/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/duncanmorris/Gnosis Project/projects/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
