@@ -23,7 +23,7 @@
         
         <h1>
         <i class="fa fa-tasks c-sidebar-brand-minimized" ></i>
-        <i class="fa fa-tasks c-sidebar-brand-full" width="118" height="46" >&nbsp; Projects</i> 
+        <a href="{{url('/')}}" class="text-white"><i class="fa fa-tasks c-sidebar-brand-full" width="118" height="46" >&nbsp; Projects</i> </a>
         </h1>
         
         </div>
